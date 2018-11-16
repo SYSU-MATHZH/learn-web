@@ -7,7 +7,8 @@ def hello():
 
 @route('/upload', method='GET')
 def upload():
-    return template('upload')
+    files = os.listdir('media/uploads/')
+    return template('upload', files=files)
 
 @route('/upload', method='POST')
 def do_upload():
