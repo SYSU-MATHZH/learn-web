@@ -11,12 +11,13 @@ def upload():
 
 @route('/upload', method='POST')
 def do_upload():
-    upload     = request.files.get('upload')
+    uploader = request.forms.get('name')
+    upload = request.files.get('upload')
     name, ext = os.path.splitext(upload.filename)
     if ext not in ('.png','.jpg','.jpeg'):
         return 'File extension not allowed.'
 
-    save_path = 'media/uploads/'
+    save_path = 'media/uploads/' + uploader + '_' + name + ext
     upload.save(save_path) # appends upload.filename automatically
     return """
     <p>上传成功！</p>
