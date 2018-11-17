@@ -2,7 +2,7 @@ from bottle import route, run, template, request, redirect
 import os
 
 @route('/')
-def hello():
+def index():
     return template('index')
 
 @route('/upload', method='GET')
@@ -19,7 +19,7 @@ def do_upload():
         return 'File extension not allowed.'
 
     save_path = 'media/uploads/' + uploader + '_' + name + ext
-    upload.save(save_path) # appends upload.filename automatically
+    upload.save(save_path)
     return """
     <p>上传成功！</p>
     <a href="/">返回主页</a>
